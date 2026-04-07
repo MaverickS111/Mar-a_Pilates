@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>María González Álvarez | Fisioterapia y Pilates</title>
+  <meta name="description" content="María González Álvarez — Fisioterapeuta y profesora de Pilates de alto nivel en Madrid. Clases personalizadas de Reformer, Mat y rehabilitación." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">María <span>Pilates</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link">Inicio</a></li>
+        <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+        <li><a href="#services" class="nav-link">Servicios</a></li>
+        <li><a href="#online" class="nav-link">Online</a></li>
+        <li><a href="#pricing" class="nav-link">Tarifas</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonios</a></li>
+        <li><a href="#contact" class="nav-link">Contacto</a></li>
+        <li><a href="booking/index.html" class="nav-link nav-link--cta">Reservar →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fisioterapia &amp; Pilates</p>
+      <h1 class="hero-title">Tu cuerpo merece<br /><em>la mejor atención.</em></h1>
+      <p class="hero-subtitle">Soy María González Álvarez, fisioterapeuta y profesora de Pilates. Te ayudo a moverte mejor, sin dolor y con confianza.</p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">Ver Servicios</a>
+        <a href="#about" class="btn btn-outline">Conóceme →</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== SOBRE MÍ ========== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img src="img/about.png" alt="Estudio de Pilates de María González" loading="lazy" />
+          <div class="about-image-accent"></div>
+        </div>
+        <div class="about-text fade-in">
+          <p class="section-eyebrow">Sobre Mí</p>
+          <h2 class="section-title">María González Álvarez</h2>
+          <p class="about-lead">Fisioterapeuta colegiada y profesora de Pilates con más de 10 años de experiencia en rehabilitación y movimiento consciente.</p>
+          <p>Mi formación en fisioterapia me permite entender tu cuerpo de forma profunda. Cada sesión está pensada para ti: desde la recuperación de una lesión hasta alcanzar tu máximo rendimiento físico.</p>
+          <p>Creo firmemente que el Pilates, guiado por un profesional sanitario, es la herramienta más poderosa para prevenir lesiones, eliminar dolores crónicos y mejorar tu calidad de vida.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">+10</span>
+              <span class="stat-label">Años de experiencia</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">+500</span>
+              <span class="stat-label">Alumnos formados</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Atención personalizada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICIOS ========== -->
+  <section class="services" id="services">
+    <div class="container">
+      <p class="section-eyebrow center">Servicios</p>
+      <h2 class="section-title center">Lo que puedo hacer por ti</h2>
+      <p class="section-subtitle center">Combino mi formación en fisioterapia con el método Pilates para ofrecerte un enfoque integral de salud y movimiento.</p>
+      <div class="services-grid">
+
+        <article class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="20" width="40" height="8" rx="2"/><line x1="12" y1="20" x2="12" y2="28"/><line x1="36" y1="20" x2="36" y2="28"/><line x1="24" y1="14" x2="24" y2="20"/><line x1="24" y1="28" x2="24" y2="34"/><circle cx="24" cy="12" r="3"/><circle cx="24" cy="36" r="3"/></svg>
+          </div>
+          <h3>Pilates Reformer</h3>
+          <p>Sesiones sobre máquina reformer con enfoque terapéutico. Ideal para tonificar, corregir posturas y rehabilitar lesiones.</p>
+        </article>
+
+        <article class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="38" rx="16" ry="3"/><path d="M24 8c-4 0-7 3-7 7 0 5 7 12 7 12s7-7 7-12c0-4-3-7-7-7z"/><circle cx="24" cy="15" r="3"/></svg>
+          </div>
+          <h3>Pilates Mat</h3>
+          <p>Clases en suelo con tu propio peso corporal. Mejora tu flexibilidad, fuerza del core y consciencia corporal.</p>
+        </article>
+
+        <article class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4v4M24 40v4M4 24h4M40 24h4M9.86 9.86l2.83 2.83M35.31 35.31l2.83 2.83M9.86 38.14l2.83-2.83M35.31 12.69l2.83-2.83"/><circle cx="24" cy="24" r="10"/></svg>
+          </div>
+          <h3>Fisioterapia</h3>
+          <p>Valoración y tratamiento fisioterapéutico personalizado. Terapia manual, ejercicio terapéutico y plan de recuperación.</p>
+        </article>
+
+        <article class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8h8l4 8H16l4-8z"/><rect x="10" y="16" width="28" height="24" rx="3"/><line x1="24" y1="22" x2="24" y2="34"/><line x1="18" y1="28" x2="30" y2="28"/></svg>
+          </div>
+          <h3>Sesiones Privadas</h3>
+          <p>Atención 1 a 1 adaptada al 100% a tus necesidades. Ideal para rehabilitación, embarazo o alto rendimiento.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TARIFAS ========== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <p class="section-eyebrow center">Tarifas</p>
+      <h2 class="section-title center">Planes para tu bienestar</h2>
+      <p class="section-subtitle center">Elige el plan que mejor se adapte a tu ritmo y objetivos.</p>
+      <div class="pricing-grid">
+
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3>Esencial</h3>
+            <p class="pricing-desc">Para empezar a cuidarte</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 4 Clases al mes</li>
+            <li><span class="check">✓</span> Acceso a Mat Pilates</li>
+            <li><span class="check">✓</span> Valoración postural inicial</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Consultar</a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured fade-in">
+          <div class="pricing-badge">Popular</div>
+          <div class="pricing-header">
+            <h3>Avanzado</h3>
+            <p class="pricing-desc">El más elegido</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 8 Clases al mes</li>
+            <li><span class="check">✓</span> Reformer + Mat</li>
+            <li><span class="check">✓</span> Reserva prioritaria</li>
+            <li><span class="check">✓</span> Seguimiento personalizado</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-block">Consultar</a>
+        </div>
+
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3>Ilimitado</h3>
+            <p class="pricing-desc">Sin límites para ti</p>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Clases ilimitadas</li>
+            <li><span class="check">✓</span> Acceso total a todas las modalidades</li>
+            <li><span class="check">✓</span> Evaluación física mensual</li>
+            <li><span class="check">✓</span> Descuento en sesiones privadas</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Consultar</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIOS ========== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <p class="section-eyebrow center">Testimonios</p>
+      <h2 class="section-title center">Lo que dicen mis alumnos</h2>
+      <div class="testimonials-grid">
+
+        <blockquote class="testimonial-card fade-in">
+          <p class="testimonial-text">"Desde que empecé con María, mi dolor de espalda ha desaparecido. Su enfoque como fisio es lo que marca la diferencia."</p>
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <cite>Laura M.</cite>
+              <span>Alumna desde 2023</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card fade-in">
+          <p class="testimonial-text">"El estudio es precioso y las clases son exigentes pero siempre seguras. María explica cada movimiento con un nivel de detalle increíble."</p>
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <cite>Carlos G.</cite>
+              <span>Alumno desde 2022</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card fade-in">
+          <p class="testimonial-text">"Las sesiones privadas de reformer cambiaron mi vida. Después de mi operación de rodilla, María me ayudó a recuperar toda la movilidad."</p>
+          <footer class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <cite>Marta Sánchez</cite>
+              <span>Alumna desde 2024</span>
+            </div>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLASES ONLINE ========== -->
+  <section class="online" id="online">
+    <div class="container">
+      <div class="online-grid">
+        <div class="online-text fade-in">
+          <p class="section-eyebrow">Online</p>
+          <h2 class="section-title">Pilates desde casa,<br /><em>con la misma calidad</em></h2>
+          <p class="online-lead">Ahora puedes practicar Pilates con mi guía personalizada desde cualquier lugar del mundo. Sesiones en directo por videollamada, 100% adaptadas a ti.</p>
+          <ul class="online-features">
+            <li>
+              <div class="online-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <strong>Clase en directo</strong>
+                <span>Sesión en tiempo real por Zoom o Google Meet</span>
+              </div>
+            </li>
+            <li>
+              <div class="online-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <strong>Horarios flexibles</strong>
+                <span>Mañanas, tardes y fines de semana disponibles</span>
+              </div>
+            </li>
+            <li>
+              <div class="online-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <strong>Individual o grupos reducidos</strong>
+                <span>Máximo 4 personas para atención de calidad</span>
+              </div>
+            </li>
+            <li>
+              <div class="online-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div>
+                <strong>Plan personalizado</strong>
+                <span>Rutina semanal adaptada a tu nivel y objetivos</span>
+              </div>
+            </li>
+          </ul>
+          <a href="booking/index.html" class="btn btn-primary" id="btn-reservar-online">Reservar clase online →</a>
+        </div>
+        <div class="online-image fade-in">
+          <img src="img/online.png" alt="Clase de Pilates online con María González" loading="lazy" />
+          <div class="online-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            <span>Sesión de prueba<br /><strong>gratuita</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MODAL RESERVA ========== -->
+  <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">&times;</button>
+      <div class="modal-header">
+        <p class="section-eyebrow">Reserva online</p>
+        <h3 id="modalTitle">Reserva tu clase</h3>
+        <p>Rellena el formulario y te confirmo disponibilidad en menos de 24 h.</p>
+      </div>
+      <form class="booking-form" id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-name">Nombre completo</label>
+            <input type="text" id="b-name" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="b-email">Email</label>
+            <input type="email" id="b-email" name="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-phone">Teléfono</label>
+            <input type="tel" id="b-phone" name="telefono" placeholder="+34 600 000 000" />
+          </div>
+          <div class="form-group">
+            <label for="b-type">Tipo de clase</label>
+            <select id="b-type" name="tipo" required>
+              <option value="" disabled selected>Selecciona...</option>
+              <option value="individual">Individual (1:1)</option>
+              <option value="duo">Dúo (2 personas)</option>
+              <option value="grupo">Grupo reducido (3-4 personas)</option>
+              <option value="prueba">Sesión de prueba gratuita</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-date">Fecha preferida</label>
+            <input type="date" id="b-date" name="fecha" required />
+          </div>
+          <div class="form-group">
+            <label for="b-time">Franja horaria</label>
+            <select id="b-time" name="horario" required>
+              <option value="" disabled selected>Selecciona...</option>
+              <option value="manana">Mañana (9:00 – 13:00)</option>
+              <option value="tarde">Tarde (16:00 – 20:00)</option>
+              <option value="finde">Fin de semana</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="b-level">Nivel</label>
+          <select id="b-level" name="nivel" required>
+            <option value="" disabled selected>¿Cuál es tu nivel?</option>
+            <option value="principiante">Principiante (nunca he hecho Pilates)</option>
+            <option value="basico">Básico (menos de 6 meses)</option>
+            <option value="intermedio">Intermedio (6 meses – 2 años)</option>
+            <option value="avanzado">Avanzado (más de 2 años)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="b-notes">¿Tienes alguna lesión o condición especial?</label>
+          <textarea id="b-notes" name="notas" rows="3" placeholder="Ej: dolor lumbar, embarazo, operación de rodilla... (opcional)"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Confirmar reserva</button>
+        <p class="form-success" id="bookingSuccess">¡Reserva recibida! Te contactaré pronto para confirmar tu plaza.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== CONTACTO ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <p class="section-eyebrow">Contacto</p>
+          <h2 class="section-title">Hablemos</h2>
+          <p>¿Tienes dudas o quieres reservar tu primera clase? Escríbeme y te respondo en menos de 24 horas.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Madrid, España</span>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>info@mariagonzalezpilates.com</span>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+34 600 000 000</span>
+            </div>
+          </div>
+          <div class="contact-social">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.88-2.89 2.89 2.89 0 0 1 2.88-2.89c.28 0 .55.04.81.11v-3.5a6.37 6.37 0 0 0-.81-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.05a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.48z"/></svg>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form fade-in" id="contactForm">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000" />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="4" placeholder="Cuéntame en qué puedo ayudarte..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Enviar mensaje</button>
+          <p class="form-success" id="formSuccess">¡Gracias! Me pondré en contacto contigo pronto.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">María <span>Pilates</span></a>
+          <p>Fisioterapia y Pilates de alto nivel. Te ayudo a moverte mejor, vivir sin dolor y alcanzar tu máximo potencial.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#online">Clases Online</a></li>
+            <li><a href="booking/index.html">Reservar clase</a></li>
+            <li><a href="#pricing">Tarifas</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <p>Madrid, España</p>
+          <p>info@mariagonzalezpilates.com</p>
+          <p>+34 600 000 000</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 María González Álvarez. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservar clase — María González Pilates</title>
+  <meta name="description" content="Reserva tu clase de Pilates online o presencial con María González Álvarez, fisioterapeuta y instructora de Pilates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="booking-header">
+    <a href="../index.html" class="header-logo">
+      María <span>Pilates</span>
+    </a>
+    <a href="../index.html" class="header-back" id="btn-back-home">
+      ← Volver al inicio
+    </a>
+  </header>
+
+  <!-- HERO STRIP -->
+  <section class="booking-hero">
+    <p class="eyebrow">Sistema de reservas</p>
+    <h1>Reserva tu clase</h1>
+    <p>Elige fecha, horario y rellena tus datos — ¡en menos de 2 minutos!</p>
+  </section>
+
+  <!-- STEPS BAR -->
+  <div class="steps-bar" id="steps-bar" role="navigation" aria-label="Pasos de reserva">
+    <div class="step-item active" id="step-ind-1">
+      <span class="step-num" aria-hidden="true">1</span>
+      <span>Elige fecha</span>
+    </div>
+    <div class="step-divider" aria-hidden="true"></div>
+    <div class="step-item" id="step-ind-2">
+      <span class="step-num" aria-hidden="true">2</span>
+      <span>Elige hora</span>
+    </div>
+    <div class="step-divider" aria-hidden="true"></div>
+    <div class="step-item" id="step-ind-3">
+      <span class="step-num" aria-hidden="true">3</span>
+      <span>Tus datos</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="booking-main">
+
+    <!-- ── STEP 1: CALENDAR ── -->
+    <section class="step-panel active" id="step-1" aria-label="Paso 1: Elige una fecha">
+      <p class="panel-title">¿Qué día te viene bien?</p>
+      <p class="panel-sub">Los días destacados tienen disponibilidad. Los días en gris no tienen huecos libres.</p>
+
+      <div class="calendar-wrapper">
+        <!-- Nav -->
+        <div class="calendar-nav">
+          <button class="cal-nav-btn" id="cal-prev" aria-label="Mes anterior">&#8592;</button>
+          <span class="cal-month-label" id="cal-month-label">Cargando...</span>
+          <button class="cal-nav-btn" id="cal-next" aria-label="Mes siguiente">&#8594;</button>
+        </div>
+
+        <!-- Weekdays -->
+        <div class="calendar-grid">
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>Lun</span><span>Mar</span><span>Mié</span>
+            <span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+          </div>
+
+          <!-- Days filled by JS -->
+          <div class="calendar-days" id="calendar-days" role="grid" aria-label="Calendario">
+            <div class="calendar-loading">
+              <div class="spinner"></div>
+              Cargando disponibilidad…
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STEP 2: SLOTS ── -->
+    <section class="step-panel" id="step-2" aria-label="Paso 2: Elige una hora">
+      <div class="slots-header">
+        <button class="btn-ghost" id="btn-back-step1" aria-label="Volver al calendario">
+          ← Calendario
+        </button>
+        <span class="selected-date-display" id="selected-date-display"></span>
+      </div>
+
+      <p class="panel-sub">Selecciona el horario que prefieras. La sesión dura 60 minutos.</p>
+
+      <div id="slots-container">
+        <div class="calendar-loading">
+          <div class="spinner"></div>
+          Cargando franjas horarias…
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STEP 3: FORM ── -->
+    <section class="step-panel" id="step-3" aria-label="Paso 3: Tus datos">
+      <p class="panel-title">Completa tu reserva</p>
+      <p class="panel-sub">Rellena tus datos y confirma. Recibirás la info por email.</p>
+
+      <div class="form-card">
+        <!-- Summary -->
+        <div class="booking-summary" id="form-summary">
+          <div class="summary-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="summary-info">
+            <div class="summary-date" id="summary-date-text">—</div>
+            <div class="summary-slot" id="summary-slot-text">—</div>
+          </div>
+          <button class="btn-ghost" id="btn-back-step2" aria-label="Cambiar horario">Cambiar</button>
+        </div>
+
+        <!-- Error banner (hidden by default) -->
+        <div class="error-banner" id="form-error" role="alert" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span id="form-error-msg"></span>
+        </div>
+
+        <!-- Form -->
+        <form id="booking-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-name">Nombre completo *</label>
+              <input type="text" id="input-name" name="name" required
+                     placeholder="Ana García López" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="input-email">Email *</label>
+              <input type="email" id="input-email" name="email" required
+                     placeholder="ana@ejemplo.com" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-class-type">Tipo de clase</label>
+            <select id="input-class-type" name="classType">
+              <option value="">Selecciona una opción</option>
+              <option value="Pilates Mat">Pilates Mat</option>
+              <option value="Pilates Reformer">Pilates Reformer</option>
+              <option value="Pilates Online">Pilates Online</option>
+              <option value="Fisioterapia + Pilates">Fisioterapia + Pilates</option>
+              <option value="Pilates Postparto">Pilates Postparto</option>
+              <option value="Pilates Prenatal">Pilates Prenatal</option>
+              <option value="Primera consulta">Primera consulta (evaluación)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-notes">Notas o motivo de la clase <em style="font-weight:400;font-style:italic;">(opcional)</em></label>
+            <textarea id="input-notes" name="notes"
+                      placeholder="Cuéntame brevemente qué buscas, si tienes alguna lesión o condición especial..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-ghost" id="btn-back-step2b">← Cambiar hora</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">
+              Confirmar reserva
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── STEP SUCCESS ── -->
+    <section class="step-panel" id="step-success" aria-label="Reserva confirmada" role="status">
+      <div class="success-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2>¡Reserva confirmada!</h2>
+      <p>Hemos añadido tu cita al calendario. Te vemos pronto 🌿</p>
+      <div class="success-detail" id="success-detail-text"></div>
+      <p style="font-size:0.88rem; color: var(--color-muted);">
+        Si necesitas cancelar o cambiar tu cita, escríbenos a <strong>maria@pilates.com</strong>
+      </p>
+      <div class="success-actions">
+        <a href="../index.html" class="btn btn-primary">Volver al inicio</a>
+        <button class="btn-ghost" id="btn-new-booking">Hacer otra reserva</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
