@@ -206,5 +206,51 @@
   </main>
 
   <script src="app.js"></script>
+
+  <!-- ========== CHATBOT N8N ========== -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    :root {
+      --chat--color-primary: #6b7c5e;
+      --chat--color-primary-shade-50: #5e6e52;
+      --chat--color-primary-shade-100: #4e5d43;
+      --chat--color-secondary: #c9a96e;
+      --chat--color-secondary-shade-50: #b8965d;
+      --chat--color-white: #faf8f5;
+      --chat--color-light: #f2efe9;
+      --chat--color-light-shade-50: #e5e0d8;
+      --chat--color-light-shade-100: #d6cfc4;
+      --chat--color-medium: #a8a8a8;
+      --chat--color-dark: #3a3a3a;
+      --chat--color-disabled: #a8a8a8;
+      --chat--color-typing: #6b7c5e;
+      --chat--border-radius: 12px;
+      --chat--window-width: 380px;
+      --chat--window-height: 520px;
+    }
+  </style>
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    createChat({
+      webhookUrl: 'https://fgalce.app.n8n.cloud/webhook/03bc148c-da84-4c6d-b73b-1470b53a4812/chat',
+      mode: 'window',
+      chatInputKey: 'chatInput',
+      initialMessages: [
+        '¡Hola! 🌿 ¿Tienes dudas sobre cómo reservar?',
+        'Puedo ayudarte con información sobre las clases, horarios y precios.',
+      ],
+      i18n: {
+        en: {
+          title: 'Asistente María Pilates',
+          subtitle: 'Resuelvo tus dudas al instante 🌿',
+          footer: '',
+          getStarted: 'Iniciar conversación',
+          inputPlaceholder: 'Escribe tu pregunta...',
+          closeButtonTooltip: 'Cerrar chat',
+        },
+      },
+      defaultLanguage: 'en',
+    });
+  </script>
 </body>
 </html>
