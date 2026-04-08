@@ -9,12 +9,26 @@ const path       = require('path');
 
 const availabilityRouter = require('./routes/availability');
 const bookingsRouter     = require('./routes/bookings');
+const waitlistRouter     = require('./routes/waitlist');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
 // ── Seguridad ────────────────────────────────────────────────────────────
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc:  ["'self'"],
+      scriptSrc:   ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+      styleSrc:    ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
+      fontSrc:     ["'self'", "https://fonts.gstatic.com"],
+      imgSrc:      ["'self'", "data:", "https:"],
+      connectSrc:  ["'self'", "https://fgalce.app.n8n.cloud"],
+      frameSrc:    ["'none'"],
+      objectSrc:   ["'none'"],
+    },
+  },
+}));
 
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
@@ -37,6 +51,7 @@ app.use(express.json());
 // ── Rutas ────────────────────────────────────────────────────────────────
 app.use('/api', availabilityRouter);
 app.use('/api/bookings', bookingsRouter);
+app.use('/api/waitlist', waitlistRouter);
 
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok', ts: new Date().toISOString() }));
