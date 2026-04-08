@@ -1,3 +1,4 @@
+// v2026-04-08 — slots bloqueados + chat n8n + CSP fix
 'use strict';
 require('dotenv').config();
 
