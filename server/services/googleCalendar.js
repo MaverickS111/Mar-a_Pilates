@@ -130,13 +130,13 @@ async function getAvailableDays(month) {
 }
 
 /**
- * Devuelve las franjas libres de un día concreto.
+ * Devuelve las franjas libres Y ocupadas de un día concreto.
  * @param {string} dateStr  'YYYY-MM-DD'
- * @returns {string[]}  Labels de franjas libres, ej: ['09:00', '10:00', ...]
+ * @returns {{ freeSlots: string[], bookedSlots: string[] }}
  */
-async function getFreeSlots(dateStr) {
+async function getDaySlots(dateStr) {
   const dayOfWeek = new Date(`${dateStr}T12:00:00`).getDay();
-  if (!WORKING_DAYS.includes(dayOfWeek)) return [];
+  if (!WORKING_DAYS.includes(dayOfWeek)) return { freeSlots: [], bookedSlots: [] };
 
   const dayStart = new Date(`${dateStr}T00:00:00`);
   const dayEnd   = new Date(`${dateStr}T23:59:59`);
@@ -144,13 +144,20 @@ async function getFreeSlots(dateStr) {
   const events = await getEvents(dayStart, dayEnd);
   const slots  = generateSlots(dateStr);
 
-  return slots
-    .filter(slot => !events.some(ev => {
+  const freeSlots   = [];
+  const bookedSlots = [];
+
+  slots.forEach(slot => {
+    const isBooked = events.some(ev => {
       const evStart = new Date(ev.start.dateTime || ev.start.date);
       const evEnd   = new Date(ev.end.dateTime   || ev.end.date);
       return slot.start < evEnd && slot.end > evStart;
-    }))
-    .map(s => s.label);
+    });
+    if (isBooked) bookedSlots.push(slot.label);
+    else          freeSlots.push(slot.label);
+  });
+
+  return { freeSlots, bookedSlots };
 }
 
 /**
@@ -198,4 +205,4 @@ async function createBooking(data) {
   return { id: res.data.id, link: res.data.htmlLink };
 }
 
-module.exports = { getAvailableDays, getFreeSlots, createBooking };
+module.exports = { getAvailableDays, getDaySlots, createBooking };
