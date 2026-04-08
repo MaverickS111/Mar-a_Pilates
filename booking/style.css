@@ -453,6 +453,182 @@ a { text-decoration: none; color: inherit; }
   opacity: 0.8;
 }
 
+.slot-btn.slot-booked {
+  background: #fdf5f2;
+  border: 1.5px dashed #d4886a;
+  color: #8f4220;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.85;
+  transition: all var(--duration) var(--ease);
+}
+
+.slot-btn.slot-booked:hover {
+  border-color: #b5602a;
+  border-style: solid;
+  background: #fff3ee;
+  color: #7a3a18;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(181, 96, 42, 0.18);
+}
+
+.slot-btn.slot-booked-active {
+  border-color: #b5602a;
+  border-style: solid;
+  background: #fff3ee;
+  color: #7a3a18;
+  opacity: 1;
+  box-shadow: 0 0 0 3px rgba(181,96,42,0.15);
+}
+
+
+.slot-lock-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto 0.25rem;
+  color: currentColor;
+  opacity: 0.7;
+}
+
+
+/* Slots legend */
+.slots-legend {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50px;
+}
+
+.legend-free {
+  background: rgba(107,124,94,0.1);
+  color: var(--color-primary-dark);
+  border: 1px solid rgba(107,124,94,0.2);
+}
+.legend-free::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.legend-booked {
+  background: #fdf5f2;
+  color: #8f4220;
+  border: 1px dashed #d4886a;
+}
+
+/* Waitlist panel — aparece debajo del grid */
+#waitlist-panel {
+  margin-top: 1rem;
+  animation: fadeUp 0.3s var(--ease) both;
+}
+#waitlist-panel[hidden] { display: none !important; }
+
+/* Lista de espera – fila que se inserta tras el boton (legacy, mantenido por compatibilidad) */
+.waitlist-form-row {
+  grid-column: 1 / -1;
+  animation: fadeUp 0.25s var(--ease) both;
+}
+
+.waitlist-form {
+  background: #fff8f5;
+  border: 1.5px solid #d4886a;
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-top: 0.25rem;
+  position: relative;
+}
+
+.wl-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  color: var(--color-text-light);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration) var(--ease);
+}
+.wl-close:hover { background: rgba(0,0,0,0.12); }
+
+.waitlist-form-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #6b2d0e;
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+
+.waitlist-fields {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.wl-name,
+.wl-email {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px solid #e0b898;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: #fff;
+  outline: none;
+  transition: border-color var(--duration) var(--ease);
+}
+.wl-name:focus,
+.wl-email:focus { border-color: #c07040; }
+
+.wl-submit {
+  padding: 0.6rem 1.25rem;
+  background: #b5602a;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--duration) var(--ease);
+  white-space: nowrap;
+}
+.wl-submit:hover:not(:disabled) { background: #8f4a1e; }
+.wl-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.waitlist-msg {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+
 .no-slots {
   text-align: center;
   padding: 3rem 1rem;

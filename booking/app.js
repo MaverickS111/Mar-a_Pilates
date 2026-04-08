@@ -190,7 +190,7 @@ async function loadSlots(dateStr) {
   try {
     const res   = await fetch(`${API_BASE}/slots?date=${dateStr}`);
     const data  = await res.json();
-    renderSlots(data.slots || []);
+    renderSlots(data.freeSlots || [], data.bookedSlots || []);
   } catch {
     slotsContainer.innerHTML = `<div class="no-slots">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -199,8 +199,9 @@ async function loadSlots(dateStr) {
   }
 }
 
-function renderSlots(slots) {
-  if (slots.length === 0) {
+function renderSlots(freeSlots, bookedSlots) {
+  const total = freeSlots.length + bookedSlots.length;
+  if (total === 0) {
     slotsContainer.innerHTML = `<div class="no-slots">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <p>No hay huecos disponibles para este día.<br/>Prueba con otra fecha.</p>
@@ -208,21 +209,133 @@ function renderSlots(slots) {
     return;
   }
 
+  // Merge y ordenar todos los slots
+  const allSlots = [
+    ...freeSlots.map(s  => ({ time: s, booked: false })),
+    ...bookedSlots.map(s => ({ time: s, booked: true  })),
+  ].sort((a, b) => a.time.localeCompare(b.time));
+
   const grid = document.createElement('div');
   grid.className = 'slots-grid';
 
-  slots.forEach(slot => {
+  allSlots.forEach(({ time, booked }) => {
     const btn = document.createElement('button');
-    btn.className = 'slot-btn' + (slot === state.selectedSlot ? ' selected' : '');
-    btn.dataset.slot = slot;
-    btn.setAttribute('aria-label', `Reservar ${slot}`);
-    btn.innerHTML = `${slot}<span class="slot-label-small">60 min</span>`;
-    btn.addEventListener('click', () => selectSlot(slot));
+    if (booked) {
+      btn.className = 'slot-btn slot-booked';
+      btn.setAttribute('aria-label', `${time} — ocupado, apuntarse a lista de espera`);
+      btn.innerHTML = `
+        <svg class="slot-lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        ${time}
+        <span class="slot-label-small">Ocupado — lista de espera</span>
+      `;
+      btn.addEventListener('click', () => toggleWaitlistForm(btn, time));
+    } else {
+      btn.className = 'slot-btn' + (time === state.selectedSlot ? ' selected' : '');
+      btn.dataset.slot = time;
+      btn.setAttribute('aria-label', `Reservar ${time}`);
+      btn.innerHTML = `${time}<span class="slot-label-small">60 min — disponible</span>`;
+      btn.addEventListener('click', () => selectSlot(time));
+    }
     grid.appendChild(btn);
   });
 
   slotsContainer.innerHTML = '';
   slotsContainer.appendChild(grid);
+
+  // ── Waitlist panel (se renderiza FUERA del grid) ────────────────────────
+  const waitlistPanel = document.createElement('div');
+  waitlistPanel.id = 'waitlist-panel';
+  waitlistPanel.hidden = true;
+  slotsContainer.appendChild(waitlistPanel);
+}
+
+// ── Waitlist panel ────────────────────────────────────────────────────────
+function toggleWaitlistForm(btn, slot) {
+  const panel = document.getElementById('waitlist-panel');
+  if (!panel) return;
+
+  // Si ya está abierto para este mismo slot, cerrar
+  if (panel.dataset.slot === slot && !panel.hidden) {
+    panel.hidden = true;
+    panel.dataset.slot = '';
+    document.querySelectorAll('.slot-booked-active').forEach(el => el.classList.remove('slot-booked-active'));
+    return;
+  }
+
+  // Desactivar todos los botones ocupados y marcar el actual
+  document.querySelectorAll('.slot-booked-active').forEach(el => el.classList.remove('slot-booked-active'));
+  btn.classList.add('slot-booked-active');
+  panel.dataset.slot = slot;
+
+  panel.innerHTML = `
+    <div class="waitlist-form">
+      <button class="wl-close" aria-label="Cerrar lista de espera">×</button>
+      <p class="waitlist-form-title">⏰ Avísame si el horario de las <strong>${slot}</strong> queda libre</p>
+      <div class="waitlist-fields">
+        <input type="text"  class="wl-name"  placeholder="Tu nombre" />
+        <input type="email" class="wl-email" placeholder="tu@email.com" required />
+        <button class="wl-submit">Avisarme</button>
+      </div>
+      <p class="waitlist-msg" hidden></p>
+    </div>
+  `;
+  panel.hidden = false;
+
+  const nameInput  = panel.querySelector('.wl-name');
+  const emailInput = panel.querySelector('.wl-email');
+  const submitBtn  = panel.querySelector('.wl-submit');
+  const closeBtn   = panel.querySelector('.wl-close');
+  const msg        = panel.querySelector('.waitlist-msg');
+
+  nameInput.focus();
+
+  closeBtn.addEventListener('click', () => {
+    panel.hidden = true;
+    panel.dataset.slot = '';
+    btn.classList.remove('slot-booked-active');
+  });
+
+  submitBtn.addEventListener('click', async () => {
+    const name  = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    if (!email) { emailInput.focus(); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    try {
+      const res = await fetch(`${API_BASE}/waitlist`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, date: state.selectedDate, slot }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        msg.textContent = '✅ ¡Apuntado! Te avisaremos si queda libre.';
+        msg.style.color = 'var(--color-accent)';
+        msg.hidden = false;
+        nameInput.disabled = true;
+        emailInput.disabled = true;
+        submitBtn.textContent = '¡Listo!';
+      } else {
+        msg.textContent = data.error || 'Error al guardar. Inténtalo de nuevo.';
+        msg.style.color = '#c0392b';
+        msg.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Avisarme';
+      }
+    } catch {
+      msg.textContent = 'No se pudo conectar. Comprueba tu conexión.';
+      msg.style.color = '#c0392b';
+      msg.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Avisarme';
+    }
+  });
 }
 
 function selectSlot(slot) {
