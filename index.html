@@ -445,7 +445,7 @@
   <script src="script.js"></script>
 
   <!-- ========== CHATBOT N8N ========== -->
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat@1.14.0/dist/style.css" rel="stylesheet" />
   <style>
     /* Override n8n chat con la paleta del sitio */
     :root {
@@ -467,29 +467,41 @@
       --chat--window-height: 520px;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/@n8n/chat@1.14.0/dist/chat.bundle.umd.js" crossorigin></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      window.N8nChat.createChat({
-        webhookUrl: 'https://fgalce.app.n8n.cloud/webhook/03bc148c-da84-4c6d-b73b-1470b53a4812/chat',
-        mode: 'window',
-        chatInputKey: 'chatInput',
-        initialMessages: [
-          '¡Hola! 🌿 Soy la asistente virtual de María Pilates.',
-          'Puedo ayudarte con información sobre clases, precios y reservas. ¿En qué puedo ayudarte?',
-        ],
-        i18n: {
-          en: {
-            title: 'Asistente María Pilates',
-            subtitle: 'Resuelvo tus dudas al instante 🌿',
-            footer: '',
-            getStarted: 'Iniciar conversación',
-            inputPlaceholder: 'Escribe tu pregunta...',
-            closeButtonTooltip: 'Cerrar chat',
-          },
-        },
-        defaultLanguage: 'en',
-      });
+      const initChat = () => {
+        const createChatFunc = window.N8nChat ? window.N8nChat.createChat : window.createChat;
+        if (typeof createChatFunc === 'function') {
+          createChatFunc({
+            webhookUrl: 'https://fgalce.app.n8n.cloud/webhook/03bc148c-da84-4c6d-b73b-1470b53a4812/chat',
+            mode: 'window',
+            chatInputKey: 'chatInput',
+            initialMessages: [
+              '¡Hola! 🌿 Soy la asistente virtual de María Pilates.',
+              'Puedo ayudarte con información sobre clases, precios y reservas. ¿En qué puedo ayudarte?',
+            ],
+            i18n: {
+              en: {
+                title: 'Asistente María Pilates',
+                subtitle: 'Resuelvo tus dudas al instante 🌿',
+                footer: '',
+                getStarted: 'Iniciar conversación',
+                inputPlaceholder: 'Escribe tu pregunta...',
+                closeButtonTooltip: 'Cerrar chat',
+              },
+            },
+            defaultLanguage: 'en',
+          });
+        }
+      };
+      if (window.N8nChat || window.createChat) {
+        initChat();
+      } else {
+        // En caso de que el script tarde un poco más
+        const script = document.querySelector('script[src*="chat.bundle.umd.js"]');
+        if (script) script.addEventListener('load', initChat);
+      }
     });
   </script>
 </body>
